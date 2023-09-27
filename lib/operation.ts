@@ -1,4 +1,7 @@
-import { TObject, TSchema, Static } from "@sinclair/typebox";
+import { TObject, TSchema } from "@sinclair/typebox";
+
+
+export type MapStatic<T extends { static: unknown }> = T["static"];
 
 export const Operation: OperationsMake = (contract) => {
   return contract;
@@ -22,7 +25,7 @@ type MapOperations<T extends OperationContract, AO = never, AM = false> = {
 };
 
 interface Responses {
-  [status: number]: TSchema;
+  [status: number]: { static: unknown };
 }
 
 interface OperationContractBase<
@@ -121,7 +124,7 @@ type KnownResponses<T extends OperationContract> = {
   [K in keyof T["responses"]]: {
     raw: Response;
     status: K;
-    data: Static<T["responses"][K]>;
+    data: MapStatic<T["responses"][K]>;
   };
 }[keyof T["responses"]];
 
@@ -161,11 +164,11 @@ type HasPath<T extends OperationContract, A, B> = IsNotEmpty<
 
 type MapQueryBodyInput<T extends OperationContract> =
   T extends OperationContractWithQueryAndBody
-    ? { query: Static<T["query"]>; body: Static<T["body"]> }
+    ? { query: MapStatic<T["query"]>; body: MapStatic<T["body"]> }
     : T extends OperationContractWithQuery
-    ? { query: Static<T["query"]> }
+    ? { query: MapStatic<T["query"]> }
     : T extends OperationContractWithBody
-    ? { body: Static<T["body"]> }
+    ? { body: MapStatic<T["body"]> }
     : {};
 
 type AdapterConfig<T> = {
@@ -213,4 +216,8 @@ export function hasBody<T extends OperationContract>(
   operation: T
 ): operation is T & OperationContractWithBody {
   return "body" in operation;
+}
+
+export function ofType<T>(value?: T): { static: T } {
+  return {} as { static: T };
 }

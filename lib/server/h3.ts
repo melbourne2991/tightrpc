@@ -1,4 +1,4 @@
-import type { Static, TSchema } from "@sinclair/typebox";
+import type { TSchema } from "@sinclair/typebox";
 import { Value } from "@sinclair/typebox/value";
 import {
   createError,
@@ -11,6 +11,7 @@ import {
   setResponseStatus,
 } from "h3";
 import {
+  MapStatic,
   OperationContract,
   OperationContractWithBody,
   OperationContractWithQuery,
@@ -38,7 +39,7 @@ export function validateBody<T extends TSchema>(event: H3Event, schema: T) {
     throw createError({ statusCode: 400 });
   }
 
-  return body as Static<T>;
+  return body as MapStatic<T>;
 }
 
 export function validateOperationQuery<T extends OperationContractWithQuery>(
@@ -60,7 +61,7 @@ export function validateOperationBody<T extends OperationContractWithBody>(
 type OperationResponse<T extends OperationContract> = {
   [K in keyof T["responses"]]: {
     status: K;
-    data: Static<T["responses"][K]>;
+    data: MapStatic<T["responses"][K]>;
   };
 }[keyof T["responses"]];
 
@@ -68,17 +69,17 @@ export type OperationHandler<T extends OperationContract> =
   T extends OperationContractWithQueryAndBody
     ? (
         event: H3Event,
-        options: { query: Static<T["query"]>; body: Static<T["body"]> }
+        options: { query: MapStatic<T["query"]>; body: MapStatic<T["body"]> }
       ) => Promise<OperationResponse<T>> | OperationResponse<T>
     : T extends OperationContractWithBody
     ? (
         event: H3Event,
-        options: { body: Static<T["body"]> }
+        options: { body: MapStatic<T["body"]> }
       ) => Promise<OperationResponse<T>> | OperationResponse<T>
     : T extends OperationContractWithQuery
     ? (
         event: H3Event,
-        options: { query: Static<T["query"]> }
+        options: { query: MapStatic<T["query"]> }
       ) => Promise<OperationResponse<T>> | OperationResponse<T>
     : (event: H3Event, options: {}) => Promise<OperationResponse<T>> | OperationResponse<T>;
 
