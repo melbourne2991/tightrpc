@@ -1,4 +1,8 @@
 module.exports = function(fileInfo, api) {
+  if (!fileInfo.path.endsWith('.js')) {
+    return fileInfo.source; // Do nothing if it's not a JS file
+  }
+
   const j = api.jscodeshift;
 
   const root = j(fileInfo.source);

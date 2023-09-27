@@ -21,15 +21,13 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "types": "tsc --config tsconfig.json src/**/*.ts",
-    "build": "esbuild --platform=neutral --outdir=lib src/*.ts src/**/*.ts && ./copy.sh && rm lib/mod_test.js && npm run cleanjs",
+    "build": "esbuild --platform=neutral --outdir=lib lib/*.ts lib/**/*.ts && npm run cleanjs && rm lib/*.test.js",
     "cleanjs": "jscodeshift -t transform.js ./lib"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "esbuild": "^0.19.3",
-    "jscodeshift": "^0.15.0",
-    "typescript": "^5.2.2"
+    "jscodeshift": "^0.15.0"
   }
 }
