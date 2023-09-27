@@ -6,7 +6,7 @@ import {
 } from "https://deno.land/std@0.202.0/testing/mock.ts";
 import { Type } from "@sinclair/typebox";
 import { assertEquals } from "https://deno.land/std@0.202.0/assert/assert_equals.ts";
-import { AlwaysMatchStatus } from "./operations.ts";
+import { AlwaysMatchStatus } from "./operation.ts";
 
 const getThings = Operation({
   path: "getThings",

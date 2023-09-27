@@ -1,5 +1,5 @@
 import { Type } from "@sinclair/typebox";
-import { Operation } from "../operations.ts";
+import { Operation } from "../src/mod.ts";
 
 export const getThings = Operation({
   path: "/getThings",

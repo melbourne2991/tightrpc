@@ -1,4 +1,4 @@
-import { ClientOperations, OperationContract } from "../operations.ts";
+import { ClientOperations, OperationContract } from "../operation.ts";
 
 export type ClientCallArgs =
   | undefined

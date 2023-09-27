@@ -17,7 +17,7 @@ import {
   OperationContractWithQueryAndBody,
   hasBody,
   hasQuery,
-} from "../operations.ts";
+} from "../operation.ts";
 
 export function validateQuery<T extends TSchema>(event: H3Event, schema: T) {
   const query = getQuery(event);

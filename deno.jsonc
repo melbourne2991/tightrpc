@@ -2,8 +2,8 @@
   "imports": {
     "@sinclair/typebox": "npm:@sinclair/typebox@^0.31.17",
     "@sinclair/typebox/value": "npm:@sinclair/typebox@^0.31.17/value",
-    "ky": "npm:ky",
-    "h3": "npm:h3@1.8.2"
+    "ky": "npm:ky@^1.0.1",
+    "h3": "npm:h3@^1.8.2"
   },
   "tasks": {
     "example:server": "deno run --allow-net --allow-read ./example/server.ts",

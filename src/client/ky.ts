@@ -1,14 +1,14 @@
 import type ky from "ky";
 import type { Options as KyOptions, SearchParamsOption }  from 'ky'
 import { Client as CoreClient } from "./core.ts";
-import { OperationContract } from "../operations.ts";
+import { OperationContract } from "../operation.ts";
 
-export const Client = <T extends OperationContract>(kyInstance: typeof ky) => {
+export const Client = <T extends OperationContract>(kyInstance: typeof ky, stripLeadingSlash: boolean = false) => {
   return CoreClient<T, KyOptions, true>((call) => {
     const method = call.method;
     let mappedEndpoint = replacePathParams(call.endpoint, call.args?.params || {})
 
-    if (mappedEndpoint.startsWith('/')) {
+    if (stripLeadingSlash && mappedEndpoint.startsWith('/')) {
       mappedEndpoint = mappedEndpoint.slice(1)
     }
 

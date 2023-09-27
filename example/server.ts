@@ -1,5 +1,5 @@
 import { createApp, toWebHandler } from "h3";
-import { operationHandler } from "../server/h3.ts";
+import { operationHandler } from "../src/server/h3.ts";
 import { getThings } from "./operations.ts";
 
 const app = createApp();

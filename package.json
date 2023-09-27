@@ -1,0 +1,28 @@
+{
+  "name": "@melb2991/tightrpc",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib/mod.js",
+  "module": "./lib/mod.js",
+  "types": "./lib/mod.ts",
+  "peerDependencies": {
+    "@sinclair/typebox": "^0.31.17"
+  },
+  "optionalDependencies": {
+    "h3": "^1.8.2",
+    "ky": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "types": "tsc --config tsconfig.json src/**/*.ts",
+    "build": "esbuild --platform=neutral --outdir=lib src/*.ts src/**/*.ts && rm lib/mod_test.js && npm run cleanjs",
+    "cleanjs": "jscodeshift -t transform.js ./lib"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.19.3",
+    "jscodeshift": "^0.15.0",
+    "typescript": "^5.2.2"
+  }
+}
