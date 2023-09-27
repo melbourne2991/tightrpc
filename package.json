@@ -5,6 +5,9 @@
   "main": "./lib/mod.js",
   "module": "./lib/mod.js",
   "types": "./lib/mod.ts",
+  "typesVersions": {
+    ">=3.1": { "*": ["src/*"] }
+  },
   "peerDependencies": {
     "@sinclair/typebox": "^0.31.17"
   },
