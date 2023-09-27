@@ -4,14 +4,7 @@
   "description": "",
   "main": "./lib/mod.js",
   "module": "./lib/mod.js",
-  "types": "./src/mod.ts",
-  "typesVersions": {
-    ">=3.1": {
-      "*": [
-        "src/*"
-      ]
-    }
-  },
+  "types": "./lib/mod.ts",
   "peerDependencies": {
     "@sinclair/typebox": "^0.31.17"
   },
