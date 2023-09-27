@@ -1,6 +1,6 @@
 {
   "name": "@melb2991/tightrpc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "./lib/mod.js",
   "module": "./lib/mod.js",
